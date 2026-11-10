@@ -1,5 +1,6 @@
 #include "PluginProcessor.h"
 #include "PluginEditor.h"
+#include "ScaledEditor.h"
 
 namespace
 {
@@ -160,6 +161,6 @@ void OptoAudioProcessor::setStateInformation (const void* data, int sizeInBytes)
             rp->setValueNotifyingHost (rp->convertTo0to1 (rp->convertFrom0to1 (rp->getValue())));
 }
 
-juce::AudioProcessorEditor* OptoAudioProcessor::createEditor() { return new OptoAudioProcessorEditor (*this); }
+juce::AudioProcessorEditor* OptoAudioProcessor::createEditor() { return new kb::ScaledEditor (*this, new OptoAudioProcessorEditor (*this)); }
 
 juce::AudioProcessor* JUCE_CALLTYPE createPluginFilter() { return new OptoAudioProcessor(); }
